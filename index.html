@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de Celulares</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="IMG/icocno.jpg" class="card-img-top" alt="icocno" style="width: 50px; height: 50px;">
+
+
+                <i class="fas fa-mobile-alt"></i> Celulares Shop
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio" onclick="scrollToSection('inicio')" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='white'">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#productos" onclick="scrollToSection('productos')" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='white'">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto" onclick="scrollToSection('contacto')" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='white'">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <header class="hero">
+        <div id="inicio"class="container text-center">
+            <h1>Compra tu Celular Nuevo</h1>
+            <p>Descubre la mejor tecnología con nuestros celulares de última generación.</p>
+            <img src="IMG/CEL.1.webp" class="card-img-top" alt="Celular 1">
+        </div>
+    </header>
+
+    <section id="productos" class="Productos container mt-5">
+        <h2 class="text-center">Productos</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="IMG/samsumg.jpg" class="card-img-top" alt="Celular 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Samsung Galaxy S23</h5>
+                        <p class="card-price"><strong>Precio: $999.99</strong></p>
+                        <p class="card-text">Potente y elegante, con cámara profesional.</p>
+                        <input type="number" class="form-control mb-2" id="cantidad1" min="1" value="1">
+                        <button class="btn btn-primary" onclick="agregarAlCarrito('Samsung Galaxy S23', 999.99, 'cantidad1')">Añadir al Carrito</button>
+                        <button class="btn btn-success" onclick="mostrarModalPago('Samsung Galaxy S23', 999.99, 'cantidad1')">Comprar Ahora</button>
+                        <a class="btn btn-info" href="https://wa.me/51956731604?text=Quiero%20comprar%20Samsung%20Galaxy%20S23%20por%20999.99$" target="_blank">Consulta por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="IMG/iphone.jpg" class="card-img-top" alt="Celular 2">
+                    <div class="card-body">
+                        <h5 class="card-title">iPhone 14 Pro</h5>
+                        <p class="card-price"><strong>Precio: $1199.99</strong></p>
+                        <p class="card-text">Rendimiento increíble y diseño sofisticado.</p>
+                        <input type="number" class="form-control mb-2" id="cantidad2" min="1" value="1">
+                        <button class="btn btn-primary" onclick="agregarAlCarrito('iPhone 14 Pro', 1199.99, 'cantidad2')">Añadir al Carrito</button>
+                        <button class="btn btn-success" onclick="mostrarModalPago('iPhone 14 Pro', 1199.99, 'cantidad2')">Comprar Ahora</button>
+                        <a class="btn btn-info" href="https://wa.me/51956731604?text=Quiero%20comprar%20iPhone%2014%20Pro%20por%201199.99$" target="_blank">Consulta por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="IMG/xiomi.jpg" class="card-img-top" alt="Celular 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Xiaomi 13 Ultra</h5>
+                        <p class="card-price"><strong>Precio: $799.99</strong></p>
+                        <p class="card-text">Gran batería y excelente relación calidad-precio.</p>
+                        <input type="number" class="form-control mb-2" id="cantidad3" min="1" value="1">
+                        <button class="btn btn-primary" onclick="agregarAlCarrito('Xiaomi 13 Ultra', 799.99, 'cantidad3')">Añadir al Carrito</button>
+                        <button class="btn btn-success" onclick="mostrarModalPago('Xiaomi 13 Ultra', 799.99, 'cantidad3')">Comprar Ahora</button>
+                        <a class="btn btn-info" href="https://wa.me/51956731604?text=Quiero%20comprar%20Xiaomi%2013%20Ultra%20por%20799.99$" target="_blank">Consulta por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="modalPago" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Selecciona tu método de pago</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <select id="metodoPago" class="form-control">
+                        <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+                        <option value="cuotas">Cuotas sin interés</option>
+                        <option value="openpay">OpenPay</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="confirmarCompra()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function agregarAlCarrito(producto, precio, cantidadId) {
+            let cantidad = document.getElementById(cantidadId).value;
+            let total = (precio * cantidad).toFixed(2);
+            alert(`Añadido al carrito: ${producto} - Cantidad: ${cantidad} - Total: $${total}`);
+        }
+
+        function mostrarModalPago(producto, precio, cantidadId) {
+            sessionStorage.setItem('productoSeleccionado', JSON.stringify({ producto, precio, cantidad: document.getElementById(cantidadId).value }));
+            let modal = new bootstrap.Modal(document.getElementById('modalPago'));
+            modal.show();
+        }
+
+        function confirmarCompra() {
+            let detalles = JSON.parse(sessionStorage.getItem('productoSeleccionado'));
+            detalles.metodoPago = document.getElementById('metodoPago').value;
+            sessionStorage.setItem('detallesCompra', JSON.stringify(detalles));
+            window.location.href = 'boleta.html';
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+
+
+<footer class="text-center py-3 bg-dark text-white">
+    
+
+<section id="contacto" class="container mt-5">
+    <h2 class="text-center">Contáctanos</h2>
+    <p class="text-center">¿Tienes alguna pregunta? Completa el formulario y nos pondremos en contacto contigo.</p>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mensaje" class="form-label">Mensaje</label>
+                    <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Enviar</button>    
+            </form>
+           
+        </div>
+     
+        <p>&copy; 2025 Datnne Hervias Todos los derechos reservados.</p>
+    </div>
+
+</section>
+
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boleta de Compra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            background: white;
+            text-align: center;
+        }
+        h2 {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            border-radius: 25px;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .btn-whatsapp:hover {
+            background-color: #1ebe57;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Boleta de Compra</h2>
+        <div class="card">
+            <h4>Detalles de la compra</h4>
+            <p><strong>Producto:</strong> <span id="producto"></span></p>
+            <p><strong>Cantidad:</strong> <span id="cantidad"></span></p>
+            <p><strong>Precio Unitario:</strong> $<span id="precio"></span></p>
+            <p><strong>Total a Pagar:</strong> $<span id="total"></span></p>
+            <p><strong>Método de Pago:</strong> <span id="metodoPago"></span></p>
+            <button class="btn btn-primary" onclick="window.print()">Imprimir Boleta</button>
+            <a href="index.html" class="btn btn-secondary">Volver a la tienda</a>
+            <a id="whatsapp-link" class="btn btn-whatsapp mt-3" target="_blank">Comprar por WhatsApp</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let detalles = JSON.parse(sessionStorage.getItem('detallesCompra'));
+            if (detalles) {
+                document.getElementById("producto").textContent = detalles.producto;
+                document.getElementById("cantidad").textContent = detalles.cantidad;
+                document.getElementById("precio").textContent = detalles.precio;
+                document.getElementById("total").textContent = (detalles.precio * detalles.cantidad).toFixed(2);
+                document.getElementById("metodoPago").textContent = detalles.metodoPago;
+                
+                let mensaje = `Hola, quiero comprar ${detalles.cantidad} unidad(es) de ${detalles.producto} por ${detalles.metodoPago}. Total: $${(detalles.precio * detalles.cantidad).toFixed(2)}`;
+                let whatsappURL = `https://wa.me/51956731604?text=${encodeURIComponent(mensaje)}`;
+                document.getElementById("whatsapp-link").href = whatsappURL;
+            }
+        });
+    </script>
+</body>
+</html>
